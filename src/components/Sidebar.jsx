@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Sidebar = ({ selectedTab,setSelectedTab }) => {
 
   return (
@@ -23,10 +25,10 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
       <hr />
 
       <ul className={`nav nav-pills flex-column mb-auto`}>
-        <li className="nav-item" onClick={()=>setSelectedTab("Home")}>
-          <a
-            href="#"
-            className={`nav-link text-white ${selectedTab==="Home" && 'active'}`}
+        <li className="nav-item">
+          <Link
+            to="/"
+            className="nav-link text-white" 
             aria-current="page"
           >
             <svg
@@ -38,11 +40,11 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
               <use xlinkHref="#home" />
             </svg>
             Home
-          </a>
+          </Link>
         </li>
 
-        <li onClick={()=>setSelectedTab("Create Post")}>
-          <a href="#" className={`nav-link text-white ${selectedTab==="Create Post" && 'active'}`}>
+        <li>
+          <Link to="/create-post" className="nav-link text-white">
             <svg
               className="bi pe-none me-2"
               width="16"
@@ -52,7 +54,7 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
               <use xlinkHref="#speedometer2" />
             </svg>
             Create Post
-          </a>
+          </Link>
         </li>
       </ul>
 

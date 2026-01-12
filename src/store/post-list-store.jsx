@@ -1,9 +1,10 @@
 import { createContext,useReducer } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export const PostList= createContext({
   postList:[],
   addPost:()=>{},
-  addInitialPosts:()=>{},
   deletePost:()=>{},
 });
 
@@ -23,18 +24,11 @@ const postListReducer=(currPostList,action)=>{
 
 const PostListProvider=({children})=>{
   const [postList,disPatchPostList]= useReducer(postListReducer,[])
-
-  const addPost=(userId,postTitle,postBody,reactions,tags)=>{
+  
+  const addPost=(post)=>{
     disPatchPostList({
       type:"ADD_POST",
-      payload:{
-        id:Date.now(),
-        title:postTitle,
-        body:postBody,
-        reactions:reactions,
-        userID:userId,
-        tags:tags,
-      }
+      payload:post,
     })
   }
 
@@ -56,7 +50,7 @@ const PostListProvider=({children})=>{
   }
 
   return <PostList.Provider value={
-    {postList,addPost,addInitialPosts,deletePost}}>
+    {postList,addPost,deletePost}}>
     {children}
   </PostList.Provider>
 }
