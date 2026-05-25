@@ -1,14 +1,18 @@
 .app-container{
   display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 .content{
   width: 100%;
+  margin-left: 200px;
 }
 .sidebar{
   min-height: 100vh;
 }
 .post-card{
-  margin: 20px 50px;
+  max-width: 800px;
+  margin: 20px 20px;
 }
 .hashtag{
   margin: 0px 3px;
@@ -18,9 +22,9 @@
   margin: 15px 0 0 0;
 }
 .create-post{
-  width:90%;
-  margin-top: 30px;
-  margin-left: 5%;
+  max-width: 800px;
+  width: 100%;
+  margin: 30px auto 0;
 }
 .logo{
   align-items: center;
