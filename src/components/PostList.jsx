@@ -1,19 +1,28 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Post from "./Post";
-import { PostList as PostListData } from "../store/post-list-store";
+import { PostListContext  } from "../store/post-list-store";
 import WelcomeMessage from "./WelcomeMessage";
 import LoadingSpinner from "./LoadingSpinner";
 import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
 
 const PostList=()=>{
-  const postList = useLoaderData();
+  const { addInitialPosts, postList } = useContext(PostListContext );
+  const loadedPosts = useLoaderData();
 
-  return(
+  useEffect(() => {
+    addInitialPosts(loadedPosts);
+  }, [loadedPosts]);
+
+  if (postList.length === 0) return <WelcomeMessage />;
+
+  return (
     <>
-    {postList.length===0 && <WelcomeMessage />}
-    {postList.map(post=><Post key={post.id} post={post}/>)}
+      {postList.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </>
-  )
+  );
 }
 
 export const postLoader=()=>{

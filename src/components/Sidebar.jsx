@@ -7,8 +7,8 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
       className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar"
       style={{ width: "200px", scrollBehavior: "none", position: "fixed", height: "100vh" }}
     >
-      <a
-        href="/"
+      <Link
+        to="/"
         className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
       >
         <svg
@@ -20,17 +20,13 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
           <use xlinkHref="#bootstrap" />
         </svg>
         <span className="fs-4">Post Love</span>
-      </a>
+      </Link>
 
       <hr />
 
       <ul className={`nav nav-pills flex-column mb-auto`}>
-        <li className="nav-item">
-          <Link
-            to="/"
-            className="nav-link text-white" 
-            aria-current="page"
-          >
+        <li onClick={() => setSelectedTab("Home")} className="nav-item">
+          <Link to="/" className={`nav-link text-white ${selectedTab === "Home" ? "active" : ""}`} aria-current="page">
             <svg
               className="bi pe-none me-2"
               width="16"
@@ -43,15 +39,15 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
           </Link>
         </li>
 
-        <li>
-          <Link to="/create-post" className="nav-link text-white">
+        <li onClick={() => setSelectedTab("Create Post")} className="nav-item">
+          <Link to="/create-post" className={`nav-link text-white ${selectedTab === "Create Post" ? "active" : ""}`} aria-current="page">
             <svg
               className="bi pe-none me-2"
               width="16"
               height="16"
               aria-hidden="true"
             >
-              <use xlinkHref="#speedometer2" />
+              <use xlinkHref="#home" />
             </svg>
             Create Post
           </Link>
@@ -61,8 +57,8 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
       <hr />
 
       <div className="dropdown">
-        <a
-          href="#"
+        <Link
+          to="#"
           className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -75,31 +71,31 @@ const Sidebar = ({ selectedTab,setSelectedTab }) => {
             className="rounded-circle me-2"
           />
           <strong>mdo</strong>
-        </a>
+        </Link>
 
         <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
           <li>
-            <a className="dropdown-item" href="#">
+            <Link to="#" className="dropdown-item">
               New project...
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link to="#" className="dropdown-item">
               Settings
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link to="#" className="dropdown-item">
               Profile
-            </a>
+            </Link>
           </li>
           <li>
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link to="#" className="dropdown-item">
               Sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -2,16 +2,17 @@ import { createContext,useReducer } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export const PostList= createContext({
+export const PostListContext = createContext({
   postList:[],
   addPost:()=>{},
   deletePost:()=>{},
+  addInitialPosts:()=>{},
 });
 
 const postListReducer=(currPostList,action)=>{
   let newPostList=currPostList;
   if(action.type==="DELETE_POST"){
-    newPostList=currPostList.filter(post=>post.id!=action.payload.postId)
+    newPostList=currPostList.filter(post=>post.id!==action.payload.postId)
   }
   else if(action.type==="ADD_POST"){
     newPostList=[action.payload,...currPostList]
@@ -49,10 +50,10 @@ const PostListProvider=({children})=>{
     })
   }
 
-  return <PostList.Provider value={
-    {postList,addPost,deletePost}}>
+  return <PostListContext.Provider value={
+    {postList,addPost,deletePost,addInitialPosts}}>
     {children}
-  </PostList.Provider>
+  </PostListContext.Provider>
 }
 
 export default PostListProvider;

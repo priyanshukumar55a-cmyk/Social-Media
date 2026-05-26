@@ -1,10 +1,10 @@
 import { Form, redirect } from "react-router-dom";
 import { useContext } from "react";
-import { PostList } from "../store/post-list-store";
+import { PostListContext  } from "../store/post-list-store";
 
 const CreatePost = () => {
 
-  // const {addPost} =  useContext(PostList)
+  // const {addPost} =  useContext(PostListContext)
 
   return (
     <Form method="POST" className="create-post">
@@ -83,7 +83,7 @@ const CreatePost = () => {
           htmlFor="tags"
           className="form-label"
         >
-          Enter your hashtags hare
+          Enter your hashtags here
         </label>
 
         <input

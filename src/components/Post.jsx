@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import {AiFillDelete} from "react-icons/ai"
-import {PostList} from "../store/post-list-store";
+import {PostListContext} from "../store/post-list-store";
 
 const Post =({post})=>{
-  const {deletePost}=useContext(PostList)
+  const {deletePost}=useContext(PostListContext)
 
   return <div className="card post-card position-relative">
   <div className="card-body">
