@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# build folders
+dist/
+build/
+
+# cache
+.cache/
+.parcel-cache/
+
+# coverage
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+
+# Tailwind output (optional)
+public/output.css
+
+# uploads (if storing locally)
+uploads/

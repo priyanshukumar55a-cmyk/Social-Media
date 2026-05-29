@@ -1,10 +1,9 @@
 import { Form, redirect } from "react-router-dom";
 import { useContext } from "react";
 import { PostListContext  } from "../store/post-list-store";
+import { addItemToServer } from "../services/itemServices";
 
 const CreatePost = () => {
-
-  // const {addPost} =  useContext(PostListContext)
 
   return (
     <Form method="POST" className="create-post">
@@ -109,6 +108,7 @@ export async function createPostAction(data){
   const formData = await data.request.formData();
   const postData= Object.fromEntries(formData)
   postData.tags=postData.tags.split(/\s+/)
+  
   fetch('https://dummyjson.com/posts/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
