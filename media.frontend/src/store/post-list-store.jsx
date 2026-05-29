@@ -55,7 +55,7 @@ const PostListProvider=({children})=>{
 
   const deletePost=async (postId)=>{
     try{
-      const deletedPostId = await deleteItemFromServer(postId);
+      const deletedPostId= await deleteItemFromServer(postId);
       disPatchPostList({
         type:"DELETE_POST",
         payload:{
@@ -68,7 +68,7 @@ const PostListProvider=({children})=>{
   }
 
   return <PostListContext.Provider value={
-    {postList, addPost, deletePost, addInitialPosts}}>
+    {postList, addPost,deletePost,addInitialPosts}}>
     {children}
   </PostListContext.Provider>
 }

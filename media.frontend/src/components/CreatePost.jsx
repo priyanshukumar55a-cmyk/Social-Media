@@ -1,6 +1,4 @@
 import { Form, redirect } from "react-router-dom";
-import { useContext } from "react";
-import { PostListContext  } from "../store/post-list-store";
 import { addItemToServer } from "../services/itemServices";
 
 const CreatePost = () => {
@@ -19,6 +17,7 @@ const CreatePost = () => {
         <input
           type="text"
           name="userId"
+          required
           className="form-control"
           id="userId"
           placeholder="Your User Id"
@@ -36,6 +35,7 @@ const CreatePost = () => {
         <input
           type="text"
           name="title"
+          required
           className="form-control"
           id="title"
           placeholder="How are you feeling today..."
@@ -54,6 +54,7 @@ const CreatePost = () => {
           type="text"
           name="body"
           rows="4"
+          required
           className="form-control"
           id="body"
           placeholder="Tell us more about it"
@@ -71,6 +72,7 @@ const CreatePost = () => {
         <input
           type="text"
           name="reactions"
+          required
           className="form-control"
           id="reactions"
           placeholder="How many people reacted to this post"
@@ -88,6 +90,7 @@ const CreatePost = () => {
         <input
           type="text"
           name="tags"
+          required
           className="form-control"
           id="tags"
           placeholder="Please enter tags using spaces"
@@ -109,15 +112,16 @@ export async function createPostAction(data){
   const postData= Object.fromEntries(formData)
   postData.tags=postData.tags.split(/\s+/)
   
-  fetch('https://dummyjson.com/posts/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(postData)
-    })
-    .then(res => res.json())
-    .then(post=>console.log(post));
+  console.log("Post Data to be sent to server:", postData); // Debugging line to check the post data before sending
 
-    return redirect("/");
+  try {
+    await addItemToServer(postData.userId, postData.title, postData.body, postData.reactions, postData.tags);
+  } catch (error) {
+    console.error("Error adding post to server:", error);
+    // Optionally, you can handle the error by showing a message to the user or redirecting to an error page
+  }
+
+  return redirect("/");
 }
 
 export default CreatePost;
